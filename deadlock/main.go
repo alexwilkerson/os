@@ -96,7 +96,9 @@ func main() {
 		parseLine(scanner.Text())
 	}
 
-	fmt.Println("EXECUTION COMPLETED: No deadlock encountered.")
+	c := color.New(color.FgGreen)
+
+	c.Println("EXECUTION COMPLETED: No deadlock encountered.")
 }
 
 func parseLine(line string) {
@@ -111,11 +113,12 @@ func parseLine(line string) {
 		proc.usedResources = make(map[int]*resource)
 		processes[id] = proc
 	}
+	c := color.New(color.FgCyan)
 	if fields[1] == "N" {
-		fmt.Printf("Process %d needs resource %d – ", id, res)
+		c.Printf("Process %d needs resource %d – ", id, res)
 		proc.Needs(res)
 	} else if fields[1] == "R" {
-		fmt.Printf("Process %d releases resource %d – ", id, res)
+		c.Printf("Process %d releases resource %d – ", id, res)
 		proc.Releases(res)
 	} else {
 		fmt.Println("Input file formatting error.")
